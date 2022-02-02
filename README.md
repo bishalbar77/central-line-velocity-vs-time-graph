@@ -1,12 +1,10 @@
 # Centre-line Velocity VS Time graph
-# Calendar events to sheet
 
-This python script plots the graph betwee pressure grad and time of each artery
+This python script plots the graph between centre-line velocity and time of each artery
 
 
 ## Steps to run the script
 
-## Installation
 ### Installating numpy
 `pip install numpy`
 
