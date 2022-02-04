@@ -11,60 +11,60 @@ def plot_graph():
     plt.style.use('classic')
     # Data for x-axis = time and y-axis = centre-line velocity
     x_time = ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0']
-    y_brachial = [
-        calc_pressure_gradient(0.1,'Brachial'),
-        calc_pressure_gradient(0.2,'Brachial'),
-        calc_pressure_gradient(0.3,'Brachial'),
-        calc_pressure_gradient(0.4,'Brachial'),
-        calc_pressure_gradient(0.5,'Brachial'),
-        calc_pressure_gradient(0.6,'Brachial'),
-        calc_pressure_gradient(0.7,'Brachial'),
-        calc_pressure_gradient(0.8,'Brachial'),
-        calc_pressure_gradient(0.9,'Brachial'),
-        calc_pressure_gradient(1.0,'Brachial'),
+    y_SICKLE = [
+        calc_pressure_gradient_coronary(0.1,'SICKLE'),
+        calc_pressure_gradient_coronary(0.2,'SICKLE'),
+        calc_pressure_gradient_coronary(0.3,'SICKLE'),
+        calc_pressure_gradient_coronary(0.4,'SICKLE'),
+        calc_pressure_gradient_coronary(0.5,'SICKLE'),
+        calc_pressure_gradient_coronary(0.6,'SICKLE'),
+        calc_pressure_gradient_coronary(0.7,'SICKLE'),
+        calc_pressure_gradient_coronary(0.8,'SICKLE'),
+        calc_pressure_gradient_coronary(0.9,'SICKLE'),
+        calc_pressure_gradient_coronary(1.0,'SICKLE'),
     ]
-    y_coronary = [
-        calc_pressure_gradient(0.1,'Coronary'),
-        calc_pressure_gradient(0.2,'Coronary'),
-        calc_pressure_gradient(0.3,'Coronary'),
-        calc_pressure_gradient(0.4,'Coronary'),
-        calc_pressure_gradient(0.5,'Coronary'),
-        calc_pressure_gradient(0.6,'Coronary'),
-        calc_pressure_gradient(0.7,'Coronary'),
-        calc_pressure_gradient(0.8,'Coronary'),
-        calc_pressure_gradient(0.9,'Coronary'),
-        calc_pressure_gradient(1.0,'Coronary'),
+    y_PLASMA = [
+        calc_pressure_gradient_coronary(0.1,'PLASMA'),
+        calc_pressure_gradient_coronary(0.2,'PLASMA'),
+        calc_pressure_gradient_coronary(0.3,'PLASMA'),
+        calc_pressure_gradient_coronary(0.4,'PLASMA'),
+        calc_pressure_gradient_coronary(0.5,'PLASMA'),
+        calc_pressure_gradient_coronary(0.6,'PLASMA'),
+        calc_pressure_gradient_coronary(0.7,'PLASMA'),
+        calc_pressure_gradient_coronary(0.8,'PLASMA'),
+        calc_pressure_gradient_coronary(0.9,'PLASMA'),
+        calc_pressure_gradient_coronary(1.0,'PLASMA'),
     ]
-    y_femoral = [
-        calc_pressure_gradient(0.1,'Femoral'),
-        calc_pressure_gradient(0.2,'Femoral'),
-        calc_pressure_gradient(0.3,'Femoral'),
-        calc_pressure_gradient(0.4,'Femoral'),
-        calc_pressure_gradient(0.5,'Femoral'),
-        calc_pressure_gradient(0.6,'Femoral'),
-        calc_pressure_gradient(0.7,'Femoral'),
-        calc_pressure_gradient(0.8,'Femoral'),
-        calc_pressure_gradient(0.9,'Femoral'),
-        calc_pressure_gradient(1.0,'Femoral'),
+    y_POLYCYTHEMIA = [
+        calc_pressure_gradient_coronary(0.1,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.2,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.3,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.4,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.5,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.6,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.7,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.8,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(0.9,'POLYCYTHEMIA'),
+        calc_pressure_gradient_coronary(1.0,'POLYCYTHEMIA'),
     ]
-    y_pulmonary_artery = [
-        calc_pressure_gradient(0.1,'Pulmonary'),
-        calc_pressure_gradient(0.2,'Pulmonary'),
-        calc_pressure_gradient(0.3,'Pulmonary'),
-        calc_pressure_gradient(0.4,'Pulmonary'),
-        calc_pressure_gradient(0.5,'Pulmonary'),
-        calc_pressure_gradient(0.6,'Pulmonary'),
-        calc_pressure_gradient(0.7,'Pulmonary'),
-        calc_pressure_gradient(0.8,'Pulmonary'),
-        calc_pressure_gradient(0.9,'Pulmonary'),
-        calc_pressure_gradient(1.0,'Pulmonary'),
+    y_NORMAL = [
+        calc_pressure_gradient_coronary(0.1,'NORMAL'),
+        calc_pressure_gradient_coronary(0.2,'NORMAL'),
+        calc_pressure_gradient_coronary(0.3,'NORMAL'),
+        calc_pressure_gradient_coronary(0.4,'NORMAL'),
+        calc_pressure_gradient_coronary(0.5,'NORMAL'),
+        calc_pressure_gradient_coronary(0.6,'NORMAL'),
+        calc_pressure_gradient_coronary(0.7,'NORMAL'),
+        calc_pressure_gradient_coronary(0.8,'NORMAL'),
+        calc_pressure_gradient_coronary(0.9,'NORMAL'),
+        calc_pressure_gradient_coronary(1.0,'NORMAL'),
     ]
 
     # Plotting lines and assigning a unique color
-    plt.plot(y_brachial, color='green')
-    plt.plot(y_coronary, color='red')
-    plt.plot(y_femoral, color='orange')
-    plt.plot(y_pulmonary_artery, color='purple')
+    plt.plot(y_SICKLE, color='green')
+    plt.plot(y_PLASMA, color='red')
+    plt.plot(y_POLYCYTHEMIA, color='orange')
+    plt.plot(y_NORMAL, color='purple')
 
     plt.title("Centre-line Velocity VS Time graph")
 
@@ -73,17 +73,17 @@ def plot_graph():
     plt.xticks(np.arange(len(x_time)), x_time, rotation=90)
 
     # Adding legend for different Arteries
-    green_patch = mpatches.Patch(color='green', label='Brachial Artery')
-    red_patch = mpatches.Patch(color='red', label='Coronary Artery')
-    orange_patch = mpatches.Patch(color='orange', label='Femoral Artery')
-    purple_patch = mpatches.Patch(color='purple', label='Pulmonary Artery')
+    green_patch = mpatches.Patch(color='green', label='SICKLE CELL')
+    red_patch = mpatches.Patch(color='red', label='PLASMA CELL')
+    orange_patch = mpatches.Patch(color='orange', label='POLYCYTHEMIA CELL')
+    purple_patch = mpatches.Patch(color='purple', label='NORMAL BLOOD CELL')
     plt.legend(handles=[green_patch, red_patch, orange_patch, purple_patch])
 
     plt.grid(True)
-
+    plt.gca().invert_yaxis()
     plt.show()
 
-def calc_pressure_gradient(time, type):
+def calc_pressure_gradient_coronary(time, type):
     An_Femoral = ["285.7314","-129.0962","-228.4915","51.8916","231.5986","-257.8969","-83.1624","10.2941","9.8959","-8.0418","-0.0481","3.1985","1.1922","-1.8612","-0.3136","1.1593","2.7302","-3.0642","4.6452","2.9388","-6.5784","3.2710","8.8252","-4.2634","3.5135","6.1367","-4.1843","0.1013","4.4836","0.0197","0.1449","-1.5150","4.1805","2.1611","-5.3132","2.3175","7.7625","-6.5698","-1.2518","6.4584","-0.3714","-1.0762","0.1864","2.0003","2.2200","-2.9155","-0.5914","4.9380","-1.0953","-1.8957"]
     Bn_Femoral = ["31.6574", "379.8315", "-90.3741", "-92.9544", "102.6494", "165.5609", "-162.7442", "-1.8481", "7.1957", "6.8170", "-7.3512", "-7.3512", "3.4779", "0.5524", "0.3664", "-3.5030", "4.2242", "-2.9325", "-3.3349", "2.3709", "3.2721", "-11.0000", "4.4926", "0.4568", "-5.6891", "4.3685", "0.9790", "-3.1224", "0.7288", "1.0156", "0.2900", "0.2900", "-2.4227", "4.0966", "-0.3749", "-7.8178", "4.4732", "4.0971", "-7.4902", "-0.3660", "3.2635", "-0.8456", "-0.8431", "-1.3000", "2.7129", "1.2549", "-4.3481", "0.1853", "3.8484", "-2.0993"]
     An_Pulmonary = ["1322.1", "852.1", "-160.3", "-417.1", "-868", "-610.9", "-437.5", "-612.7", "-612.7", "-204.6",   "110.3", "-64.8", "207.8", "175", "140.7", "35.3", "-31.6", "141.9", "-48.1", "-2.4", "67.2", "-31.8", "4.1","-18.8", "-4.7", "-10.9", "-102.4", "28.1", "-7.8", "-22.7", "21.4", "15.6", "29", "-24.8", "22.6", "32.2", "-24.6", "22.6", "10.7", "8.6", "11.1", "-19.9", "33.7", "-22.3", "-14.5", "24.2", "-13.7", "12.5", "4.8", "11.4"]
@@ -93,38 +93,35 @@ def calc_pressure_gradient(time, type):
     An_Brachial = ["191.6383", "218.9791", "268.1564", "224.3540", "145.9238", "103.1281", "74.0993", "57.0934", "36.8736", "16.2201", "0.2299", "-18.6542", "-28.4889", "-46.9507", "-45.4633", "-55.5101", "-64.8284", "-68.0315", "-71.2238", "-67.9262", "-70.7426", "-67.2803", "-66.4062", "-59.1810", "-57.6494", "-53.7718", "-48.0437","-42.4643", "-41.1287", "-33.9490", "-30.2650", "-24.4485", "-20.8442", "-17.5611", "-12.3196", "-9.2091", "-7.9124", "-7.7500", "-4.6640", "-2.8875", "-1.6893", "0.0577", "1.4701", "0.3349", "3.7993", "1.3974", "3.7970", "2.0775", "1.0691","1.0863", "11.1", "-19.9", "33.7", "-22.3", "-14.5", "24.2", "-13.7", "12.5", "4.8", "11.4"]
     Bn_Brachial = ["-253.0965", "-65.9683", "16.1377", "107.7265", "141.5211", "138.2621", "145.0011", "146.7079", "151.2893", "131.4338", "130.3422", "122.3305", "115.0491", "98.3526", "94.4473", "80.0819", "75.3471", "60.5751", "48.4956", "38.3485", "27.2166", "18.5114", "11.9816", "8.0941", "-0.5086", "-6.6034", "-12.4996", "-16.7447", "-18.8979", "-19.7601", "-24.5299", "-21.8377", "-24.1316", "-20.9204", "-21.0125", "-19.1784", "-18.5020", "-17.2335", "-15.2416", "-15.4263", "-11.7592", "-10.4825", "-10.5018", "-7.9252", "-6.7515", "-4.6179", "-2.7875", "-3.0679", "-2.5105", "-0.6775", "-0.7986", "0.1097", "0.9671", "0.7818", "2.2293", "2.6181", "3.1057", "1.2236", "2.0984", "0.7317"]
 
-    w = 2 * 3.14159 * 1.2 #Hz
-    if type == "Femoral":
-        a0 = 77.1160
-        anFemoralProd = 0.0
-        for i in range(len(An_Femoral)):
-            newAn = float(An_Femoral[i])
-            newBn = float(Bn_Femoral[i])
-            anFemoralProd = anFemoralProd + ((newAn * float(math.cos(i * w * time))) + (newBn * float(math.sin(i * w * time))))
-        return a0 + anFemoralProd
-    if type == "Pulmonary":
-        a0 = 11.8246
-        anPulmonaryProd = 0.0
-        for i in range(len(An_Pulmonary)):
-            newAn = float(An_Pulmonary[i])
-            newBn = float(Bn_Pulmonary[i])
-            anPulmonaryProd = anPulmonaryProd + ((newAn * float(math.cos(i * w * time))) + (newBn * float(math.sin(i * w * time))))
-        return a0 + anPulmonaryProd
-    if type == "Coronary":
-        a0 = -1474.0373
-        anCoronarylProd = 0.0
-        for i in range(len(An_Coronary)):
-            newAn = float(An_Coronary[i])
-            newBn = float(Bn_Coronary[i])
-            anCoronarylProd = anCoronarylProd + ((newAn * float(math.cos(i * w * time))) + (newBn * float(math.sin(i * w * time))))
-        return a0 + anCoronarylProd
-    if type == "Brachial":
-        a0 = 969.5190
-        anBrachialProd = 0.0
-        for i in range(len(An_Brachial)):
-            newAn = float(An_Brachial[i])
-            newBn = float(Bn_Brachial[i])
-            anBrachialProd = anBrachialProd + ((newAn * float(math.cos(i * w * time))) + (newBn * float(math.sin(i * w * time))))
-        return a0 + anBrachialProd
+    w = (2 * 3.14159)/time #Hz
+    u_o = 0.004
+    T = 310.15
+    a0 = -1474.0373
+    R = 0.0015
+    r = 0
+    if type == "SICKLE":
+        c = 0.248
+        m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
+        u_s = u_o / (1 - m * c)
+        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        return u_f
+    if type == "PLASMA":
+        c = 0.28
+        m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
+        u_s = u_o / (1 - m * c)
+        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        return u_f
+    if type == "POLYCYTHEMIA":
+        c = 0.632
+        m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
+        u_s = u_o / (1 - m * c)
+        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        return u_f
+    if type == "NORMAL":
+        c = 0.426
+        m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
+        u_s = u_o / (1 - m * c)
+        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        return u_f
 
 plot_graph()
