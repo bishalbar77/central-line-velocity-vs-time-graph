@@ -101,9 +101,9 @@ def calc_pressure_gradient_coronary(time, type):
     r = 0
     Pf = 1050
     Pp = 1125
-    n = len(An_Femoral)
+    n = len(An_Coronary)
     Io = 1
-    an = float(An_Femoral[-1])
+    an = float(An_Coronary[-1])
     if type == "SICKLE":
         c = 0.248
         m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
@@ -113,9 +113,9 @@ def calc_pressure_gradient_coronary(time, type):
         En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
         Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
         u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
-        for n in range(len(An_Femoral)):
-            newAn = float(An_Femoral[n])
-            newBn = float(Bn_Femoral[n])
+        for n in range(len(An_Coronary)):
+            newAn = float(An_Coronary[n])
+            newBn = float(Bn_Coronary[n])
             u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
     if type == "PLASMA":
@@ -126,9 +126,9 @@ def calc_pressure_gradient_coronary(time, type):
         En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
         Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
         u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
-        for n in range(len(An_Femoral)):
-            newAn = float(An_Femoral[n])
-            newBn = float(Bn_Femoral[n])
+        for n in range(len(An_Coronary)):
+            newAn = float(An_Coronary[n])
+            newBn = float(Bn_Coronary[n])
             u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
     if type == "POLYCYTHEMIA":
@@ -139,9 +139,9 @@ def calc_pressure_gradient_coronary(time, type):
         En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
         Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
         u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
-        for n in range(len(An_Femoral)):
-            newAn = float(An_Femoral[n])
-            newBn = float(Bn_Femoral[n])
+        for n in range(len(An_Coronary)):
+            newAn = float(An_Coronary[n])
+            newBn = float(Bn_Coronary[n])
             u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
     if type == "NORMAL":
@@ -152,9 +152,9 @@ def calc_pressure_gradient_coronary(time, type):
         En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
         Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
         u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
-        for n in range(len(An_Femoral)):
-            newAn = float(An_Femoral[n])
-            newBn = float(Bn_Femoral[n])
+        for n in range(len(An_Coronary)):
+            newAn = float(An_Coronary[n])
+            newBn = float(Bn_Coronary[n])
             u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
 
