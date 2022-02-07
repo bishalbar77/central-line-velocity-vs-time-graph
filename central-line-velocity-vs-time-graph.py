@@ -93,35 +93,69 @@ def calc_pressure_gradient_coronary(time, type):
     An_Brachial = ["191.6383", "218.9791", "268.1564", "224.3540", "145.9238", "103.1281", "74.0993", "57.0934", "36.8736", "16.2201", "0.2299", "-18.6542", "-28.4889", "-46.9507", "-45.4633", "-55.5101", "-64.8284", "-68.0315", "-71.2238", "-67.9262", "-70.7426", "-67.2803", "-66.4062", "-59.1810", "-57.6494", "-53.7718", "-48.0437","-42.4643", "-41.1287", "-33.9490", "-30.2650", "-24.4485", "-20.8442", "-17.5611", "-12.3196", "-9.2091", "-7.9124", "-7.7500", "-4.6640", "-2.8875", "-1.6893", "0.0577", "1.4701", "0.3349", "3.7993", "1.3974", "3.7970", "2.0775", "1.0691","1.0863", "11.1", "-19.9", "33.7", "-22.3", "-14.5", "24.2", "-13.7", "12.5", "4.8", "11.4"]
     Bn_Brachial = ["-253.0965", "-65.9683", "16.1377", "107.7265", "141.5211", "138.2621", "145.0011", "146.7079", "151.2893", "131.4338", "130.3422", "122.3305", "115.0491", "98.3526", "94.4473", "80.0819", "75.3471", "60.5751", "48.4956", "38.3485", "27.2166", "18.5114", "11.9816", "8.0941", "-0.5086", "-6.6034", "-12.4996", "-16.7447", "-18.8979", "-19.7601", "-24.5299", "-21.8377", "-24.1316", "-20.9204", "-21.0125", "-19.1784", "-18.5020", "-17.2335", "-15.2416", "-15.4263", "-11.7592", "-10.4825", "-10.5018", "-7.9252", "-6.7515", "-4.6179", "-2.7875", "-3.0679", "-2.5105", "-0.6775", "-0.7986", "0.1097", "0.9671", "0.7818", "2.2293", "2.6181", "3.1057", "1.2236", "2.0984", "0.7317"]
 
-    w = (2 * 3.14159)/time #Hz
+    w = 2 * 3.14159 * 1.2 #Hz
     u_o = 0.004
     T = 310.15
     a0 = -1474.0373
     R = 0.0015
     r = 0
+    Pf = 1050
+    Pp = 1125
+    n = len(An_Femoral)
+    Io = 1
+    an = float(An_Femoral[-1])
     if type == "SICKLE":
         c = 0.248
         m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
         u_s = u_o / (1 - m * c)
-        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        # u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        S = 4.5 * (u_o / R*R) * (4 + 3 * math.sqrt(c * 8 * c - 2 * c * c) + 3 * c)/((2 - 3 * c) * (2 - 3 * c))
+        En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
+        Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
+        u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
+        for n in range(len(An_Femoral)):
+            newAn = float(An_Femoral[n])
+            newBn = float(Bn_Femoral[n])
+            u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
     if type == "PLASMA":
         c = 0.28
         m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
         u_s = u_o / (1 - m * c)
-        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        S = 4.5 * (u_o / R*R) * (4 + 3 * math.sqrt(c * 8 * c - 2 * c * c) + 3 * c)/((2 - 3 * c) * (2 - 3 * c))
+        En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
+        Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
+        u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
+        for n in range(len(An_Femoral)):
+            newAn = float(An_Femoral[n])
+            newBn = float(Bn_Femoral[n])
+            u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
     if type == "POLYCYTHEMIA":
         c = 0.632
         m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
         u_s = u_o / (1 - m * c)
-        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        S = 4.5 * (u_o / R*R) * (4 + 3 * math.sqrt(c * 8 * c - 2 * c * c) + 3 * c)/((2 - 3 * c) * (2 - 3 * c))
+        En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
+        Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
+        u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
+        for n in range(len(An_Femoral)):
+            newAn = float(An_Femoral[n])
+            newBn = float(Bn_Femoral[n])
+            u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
     if type == "NORMAL":
         c = 0.426
         m = 0.07 * (math.exp(2.49 * c) + ((1107/T) * math.exp(-1.69 * c)))
         u_s = u_o / (1 - m * c)
-        u_f = - ((a0 * R)/(1-c) * u_s * w) * (r*r - 1)
+        S = 4.5 * (u_o / R*R) * (4 + 3 * math.sqrt(c * 8 * c - 2 * c * c) + 3 * c)/((2 - 3 * c) * (2 - 3 * c))
+        En = - (an * R)/(u_s * w) * (c/(1-c) * (S/(S + n * w * Pp)))
+        Gn = -R*R * (c * S * n * w * Pp + n * w * Pf * (1 - c) * S - n * n * Pp * Pf * (1 - c)) / ((1 - c) * ( S * n * w * Pp) * u_s)
+        u_f = ((-a0 * R) / (1-c) * u_s * w) * (r * r - 1)
+        for n in range(len(An_Femoral)):
+            newAn = float(An_Femoral[n])
+            newBn = float(Bn_Femoral[n])
+            u_f = u_f + (En/Gn * ((Io * (r * math.sqrt(Gn))) / (Io * math.sqrt(Gn))) * math.exp(c * n * w * time - math.atan(newBn/newAn)))
         return u_f
 
 plot_graph()
